@@ -22,6 +22,27 @@ namespace Lab21.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Id = UserList.userList.Count + 1;
+                UserList.userList.Add(user);
+                return RedirectToAction("welcome", new { Id = user.Id });
+            }
+            return View();
+        }
+
+        public ViewResult Welcome(int ? id)
+        {
+            return View(UserList.userList.FirstOrDefault(e => e.Id == id));
+        }
 
         public IActionResult Privacy()
         {
