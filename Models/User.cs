@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +20,9 @@ namespace Lab21.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "A password is required.")]
         public string Password { get; set; }
+        [NotMapped]
+        [Compare("Password")]
+        public string ConfirmPassword { get; set; }
         [Required(ErrorMessage = "This field cannot be empty.")]
         [Range(1,150, ErrorMessage = "Value must be between 1 and 150")]
         public float Balance { get; set; }
