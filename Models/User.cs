@@ -26,5 +26,15 @@ namespace Lab21.Models
         [Required(ErrorMessage = "This field cannot be empty.")]
         [Range(1,150, ErrorMessage = "Value must be between 1 and 150")]
         public float Balance { get; set; }
+        [Phone()]
+        [RegularExpression(@"^(?:\([2-9]\d{2}\)\ ?|[2-9]\d{2}(?:\-?|\ ?))[2-9]\d{2}[- ]?\d{4}$", ErrorMessage = "That is not a valid phone number.")]
+        /*
+        US Phone Number: This regular expression for US phone numbers conforms to NANP A-digit and D-digit requirments (ANN-DNN-NNNN). 
+        Area Codes 001-199 are not permitted; Central Office Codes 001-199 are not permitted. Format validation accepts 10-digits without delimiters, 
+        optional parens on area code, and optional spaces or dashes between area code, central office code and station code. Acceptable formats 
+        include 2225551212, 222 555 1212, 222-555-1212, (222) 555 1212, (222) 555-1212, etc. You can add/remove formatting options to meet your needs.
+        */
+        public string Phone { get; set; }
+        public bool Waffles { get; set; }
     }
 }
