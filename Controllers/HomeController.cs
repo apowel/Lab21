@@ -34,13 +34,18 @@ namespace Lab21.Controllers
             {
                 user.Id = UserList.userList.Count + 1;
                 UserList.userList.Add(user);
-                return RedirectToAction("welcome", new { Id = user.Id });
+                return RedirectToAction("details", new { Id = user.Id });
             }
             return View();
         }
 
         public ViewResult Welcome(int ? id)
         {
+            return View(UserList.userList.FirstOrDefault(e => e.Id == id));
+        }
+        public ViewResult Details(int? id)
+        {
+            ViewBag.PageTitle = "User Details";
             return View(UserList.userList.FirstOrDefault(e => e.Id == id));
         }
 
